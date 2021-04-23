@@ -10,13 +10,13 @@ Custom [code2vec](https://github.com/tech-srl/code2vec) implementation for Pytho
 
 ### Training
 
-1. Place the csv file named `dataset.csv` that contains the data with the `code_block` and `target` columns in the main folder
+1. Place `dataset.csv` containing the `code_block` and `target` columns in the main folder
 2. Run `train.sh --nthreads N` (by default, the number of threads is 1)
 3. Check out `vectors` folder to get the calculated vectors
 
 [comment]: <> (where `01` is a dataset name assigned in `train.sh`. Rename DATASET_NAME variable there, if you want to run `preprocess.py` for new data keeping)
 
-The [original work](https://github.com/tech-srl/code2vec) has a lot more opportunities (including already trained on Java models). It is strongly recommended to get acquainted with it.
+The [original work](https://github.com/tech-srl/code2vec) has a lot more opportunities (including already trained models for Java code chunks). It is strongly recommended to get acquainted with it.
 
 ## FAQ
 
