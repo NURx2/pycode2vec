@@ -2,6 +2,8 @@
 
 Custom [code2vec](https://github.com/tech-srl/code2vec) implementation for Python3. Uses path-miner from [astminer](https://github.com/JetBrains-Research/astminer) project.
 
+<img src="./pipeline.png">
+
 ## Usage
 
 ### Before the first launch
@@ -10,9 +12,15 @@ Custom [code2vec](https://github.com/tech-srl/code2vec) implementation for Pytho
 
 ### Training
 
-1. Place `dataset.csv` containing the `code_block` and `target` columns in the main folder
-2. Run `train.sh --nthreads N` (by default, the number of threads is 1)
-3. Check out `vectors` folder to get the calculated vectors
+1. Place `train.csv` containing the `code_block` and `target` columns in the `dataset` folder
+2. Run `train.sh --nthreads N` (by default, the number of threads is -1)
+
+### Predicting
+
+1. Run `predict.sh`
+2. Check out `vectors` folder to get the calculated vectors
+
+Configurations can be found in `default.config`.
 
 [comment]: <> (where `01` is a dataset name assigned in `train.sh`. Rename DATASET_NAME variable there, if you want to run `preprocess.py` for new data keeping)
 

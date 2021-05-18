@@ -1,5 +1,9 @@
 .DS_Store
 
+multiprocess.py
+
+model_log.txt
+
 dataset.csv
 
 data/
@@ -7,6 +11,7 @@ models/
 vectors/
 input_chunks/
 preprocessed_data/
+datasets/
 
 my_dataset_train/
 my_dataset_val/

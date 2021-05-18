@@ -21,19 +21,23 @@ parser.add_argument('--val_dir', dest='val_dir', type=str)
 parser.add_argument('--test_dir', dest='test_dir', type=str)
 args = parser.parse_args()
 
-df = pd.read_csv('dataset.csv')
+df_train = pd.read_csv('datasets/train.csv')
+df_test = pd.read_csv('datasets/test.csv')
 
-df = df[df.groupby('target')['target'].transform('size') > 5]
+df_train = df_train[df_train.groupby('target')['target'].transform('size') > 9]
 
-print('Dataset target statistics:')
-print(df['target'].value_counts())
+print('\nTrain ataset target statistics:')
+print(df_train['target'].value_counts())    
+
+print('\nTest dataset target statistics:')
+print(df_test['target'].value_counts())    
 
 X_train, X_test, y_train, y_test = train_test_split(
-    df['code_block'], 
-    df['target'], 
-    test_size=0.2, 
+    df_train['code_block'], 
+    df_train['target'], 
+    test_size=0.1, 
     random_state=42,
-    stratify=df['target'].tolist()
+    stratify=df_train['target'].tolist()
 )
 
 clear_dir(args.train_dir + '/')
@@ -43,3 +47,7 @@ for i, code in X_train.items():
 clear_dir(args.val_dir + '/')
 for i, code in X_test.items():
     print(code[1:-1], file=open(args.val_dir + '/' + str(i) + '|' + y_test.loc[i] + '.py', 'w+'))
+
+clear_dir(args.test_dir + '/')
+for i, code in df_test['code_block'].items():
+    print(code[1:-1], file=open(args.test_dir + '/' + str(i) + '|' + df_test['target'].loc[i] + '.py', 'w+'))
