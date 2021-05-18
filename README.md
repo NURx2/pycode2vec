@@ -17,8 +17,9 @@ Custom [code2vec](https://github.com/tech-srl/code2vec) implementation for Pytho
 
 ### Predicting
 
-1. Run `predict.sh`
-2. Check out `vectors` folder to get the calculated vectors
+1. Place `test.csv` containing the `code_block` and `target` columns in the `dataset` folder
+2. Run `predict.sh`
+3. Check out `vectors` folder to get the calculated vectors
 
 Configurations can be found in `default.config`.
 
