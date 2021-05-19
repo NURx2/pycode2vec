@@ -21,8 +21,11 @@ parser.add_argument('--val_dir', dest='val_dir', type=str)
 parser.add_argument('--test_dir', dest='test_dir', type=str)
 args = parser.parse_args()
 
-df_train = pd.read_csv('datasets/train.csv')
-df_test = pd.read_csv('datasets/test.csv')
+df_train = pd.read_csv('datasets/train.csv', index_col=0)
+df_test = pd.read_csv('datasets/test.csv', index_col=0)
+
+df_train.sort_index(inplace=True)
+df_test.sort_index(inplace=True)
 
 df_train = df_train[df_train.groupby('target')['target'].transform('size') > 9]
 
