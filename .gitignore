@@ -22,6 +22,7 @@ my_test_dir/
 
 nl2ml/data.csv
 nl2ml/graph.csv
+nl2ml/result.csv
 
 astminer/build/
 astminer/src/main/generated/
