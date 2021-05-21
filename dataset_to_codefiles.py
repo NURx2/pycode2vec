@@ -4,21 +4,12 @@ import shutil
 import os
 from sklearn.model_selection import train_test_split
 
-def clear_dir(path):
-    for filename in os.listdir(path):
-        file_path = os.path.join(path, filename)
-        try:
-            if os.path.isfile(file_path) or os.path.islink(file_path):
-                os.unlink(file_path)
-            elif os.path.isdir(file_path):
-                shutil.rmtree(file_path)
-        except Exception as e:
-            print('Failed to delete %s. Reason: %s' % (file_path, e))
+def create_dir(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--train_dir', dest='train_dir', type=str, required=True)
-parser.add_argument('--val_dir', dest='val_dir', type=str)
-parser.add_argument('--test_dir', dest='test_dir', type=str)
+parser.add_argument('--chunks_dir', dest='chunks_dir', type=str, required=True)
 args = parser.parse_args()
 
 df_train = pd.read_csv('datasets/train.csv', index_col=0)
@@ -29,7 +20,7 @@ df_test.sort_index(inplace=True)
 
 df_train = df_train[df_train.groupby('target')['target'].transform('size') > 9]
 
-print('\nTrain ataset target statistics:')
+print('\nTrain dataset target statistics:')
 print(df_train['target'].value_counts())    
 
 print('\nTest dataset target statistics:')
@@ -43,14 +34,21 @@ X_train, X_test, y_train, y_test = train_test_split(
     stratify=df_train['target'].tolist()
 )
 
-clear_dir(args.train_dir + '/')
+if os.path.exists(args.chunks_dir):
+    shutil.rmtree(args.chunks_dir)
+
+train_path = os.path.join(args.chunks_dir, 'train')
+val_path = os.path.join(args.chunks_dir, 'val')
+test_path = os.path.join(args.chunks_dir, 'test')
+
+create_dir(train_path)
 for i, code in X_train.items():
-    print(code[1:-1], file=open(args.train_dir + '/' + str(i) + '|' + y_train.loc[i] + '.py', 'w+'))
+    print(code[1:-1], file=open(train_path + '/' + str(i) + '|' + y_train.loc[i] + '.py', 'w+'))
 
-clear_dir(args.val_dir + '/')
+create_dir(val_path)
 for i, code in X_test.items():
-    print(code[1:-1], file=open(args.val_dir + '/' + str(i) + '|' + y_test.loc[i] + '.py', 'w+'))
+    print(code[1:-1], file=open(val_path + '/' + str(i) + '|' + y_test.loc[i] + '.py', 'w+'))
 
-clear_dir(args.test_dir + '/')
+create_dir(test_path)
 for i, code in df_test['code_block'].items():
-    print(code[1:-1], file=open(args.test_dir + '/' + str(i) + '|' + df_test['target'].loc[i] + '.py', 'w+'))
+    print(code[1:-1], file=open(test_path + '/' + str(i) + '|' + df_test['target'].loc[i] + '.py', 'w+'))

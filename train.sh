@@ -20,7 +20,7 @@ case $key in
 esac
 done
 
-${PYTHON} dataset_to_codefiles.py --train_dir ${TRAIN_DIR} --val_dir ${VAL_DIR} --test_dir ${TEST_DIR}
+${PYTHON} dataset_to_codefiles.py --chunks_dir ${CHUNKS_DIR}
 
 mkdir -p data
 
