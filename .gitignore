@@ -1,4 +1,5 @@
 .DS_Store
+.ipynb_checkpoints/
 
 multiprocess.py
 
@@ -26,3 +27,5 @@ nl2ml/result.csv
 
 astminer/build/
 astminer/src/main/generated/
+
+venv/

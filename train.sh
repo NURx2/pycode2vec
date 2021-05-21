@@ -31,7 +31,7 @@ ${JAVA} -jar ${EXTRACTOR_JAR} code2vec --lang py --project ${VAL_DIR} --output $
 echo "Finished extracting paths from validation set"
 echo "Extracting paths from test set..."
 ${JAVA} -jar ${EXTRACTOR_JAR} code2vec --lang py --project ${TEST_DIR} --output ${JAR_OUTPUP_FOLDER_TEST} \
-  --maxL ${MAX_PATH_LENGTH} --maxW ${${MAX_PATH_WIDTH}} --maxContexts ${MAX_CONTEXTS} --maxTokens ${WORD_VOCAB_SIZE} \
+  --maxL ${MAX_PATH_LENGTH} --maxW ${MAX_PATH_WIDTH} --maxContexts ${MAX_CONTEXTS} --maxTokens ${WORD_VOCAB_SIZE} \
   --maxPaths ${PATH_VOCAB_SIZE}
 echo "Finished extracting paths from test set"
 echo "Extracting paths from training set..."
