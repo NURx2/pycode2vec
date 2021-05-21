@@ -1,0 +1,7 @@
+[submodule "astminer"]
+	path = astminer
+	url = https://github.com/JetBrains-Research/astminer
+
+[submodule "code2vec"]
+	path = code2vec
+	url = https://github.com/tech-srl/code2vec

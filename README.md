@@ -6,6 +6,8 @@ Custom [code2vec](https://github.com/tech-srl/code2vec) implementation for Pytho
 
 ## Usage
 
+1. Clone this repository and submodules `git clone --recurse-submodules https://github.com/NURx2/pycode2vec`
+
 ### Before the first launch
 
 1. Run `./gradlew shadowJar` in `astminer` directory 
