@@ -22,7 +22,8 @@ done
 
 ${PYTHON} dataset_to_codefiles.py --chunks_dir ${CHUNKS_DIR}
 
-mkdir -p data
+rm -rf ${DATA_DIR}
+mkdir -p ${DATA_DIR}
 
 echo "Extracting paths from validation set..."
 ${JAVA} -jar ${EXTRACTOR_JAR} code2vec --lang py --project ${VAL_DIR} --output ${JAR_OUTPUP_FOLDER_VAL} \
@@ -56,7 +57,7 @@ ${PYTHON} code2vec/preprocess.py --train_data ${TRAIN_DATA_FILE} --val_data ${VA
     
 # If all went well, the raw data files can be deleted, because preprocess.py creates new files 
 # with truncated and padded number of paths for each example.
-rm ${TARGET_HISTOGRAM_FILE} ${ORIGIN_HISTOGRAM_FILE} ${PATH_HISTOGRAM_FILE}
+# rm ${TARGET_HISTOGRAM_FILE} ${ORIGIN_HISTOGRAM_FILE} ${PATH_HISTOGRAM_FILE}
 
 echo "### Preprocessing is done ###"
 
