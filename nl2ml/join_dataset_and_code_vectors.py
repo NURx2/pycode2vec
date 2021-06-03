@@ -9,8 +9,6 @@ print('Test csv shape: ', data.shape)
 if data.shape[0] != res_df.shape[0]:
 	raise AssertionError('Shapes are different!')
 
-data.sort_index(inplace=True)
-
 res_df['code_block'] = data['code_block'].reset_index(drop=True)
 res_df['target'] = data['target'].reset_index(drop=True)
 
