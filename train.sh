@@ -54,10 +54,6 @@ ${PYTHON} code2vec/preprocess.py --train_data ${TRAIN_DATA_FILE} --val_data ${VA
   --max_contexts ${MAX_CONTEXTS} --word_vocab_size ${WORD_VOCAB_SIZE} --path_vocab_size ${PATH_VOCAB_SIZE} \
   --target_vocab_size ${TARGET_VOCAB_SIZE} --word_histogram ${ORIGIN_HISTOGRAM_FILE} --output_name ${DATA_DIR}/data \
   --path_histogram ${PATH_HISTOGRAM_FILE} --target_histogram ${TARGET_HISTOGRAM_FILE} --test_data ${TEST_DATA_FILE}
-    
-# If all went well, the raw data files can be deleted, because preprocess.py creates new files 
-# with truncated and padded number of paths for each example.
-# rm ${TARGET_HISTOGRAM_FILE} ${ORIGIN_HISTOGRAM_FILE} ${PATH_HISTOGRAM_FILE}
 
 echo "### Preprocessing is done ###"
 
