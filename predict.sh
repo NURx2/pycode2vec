@@ -17,16 +17,16 @@ ${PYTHON} code2vec/preprocess.py --train_data ${TRAIN_DATA_FILE} --val_data ${VA
   --target_vocab_size ${TARGET_VOCAB_SIZE} --word_histogram ${ORIGIN_HISTOGRAM_FILE} --output_name ${DATA_DIR}/data \
   --path_histogram ${PATH_HISTOGRAM_FILE} --target_histogram ${TARGET_HISTOGRAM_FILE} --test_data ${TEST_DATA_FILE}
 
-# If all went well, the raw data files can be deleted, because preprocess.py creates new files 
-# with truncated and padded number of paths for each example.
-rm ${TARGET_HISTOGRAM_FILE} ${ORIGIN_HISTOGRAM_FILE} ${PATH_HISTOGRAM_FILE}
-
 echo "### Preprocessing is done ###"
 
-${PYTHON} -u code2vec/code2vec.py --framework tensorflow --load ${MODEL_DIR}/saved_model --test ${TEST_DATA} --export_code_vectors
+${PYTHON} -u code2vec/code2vec.py --framework tensorflow --load ${MODEL_DIR}/saved_model_iter --test ${TEST_DATA} --export_code_vectors
 
-${PYTHON} -u code2vec/code2vec.py --framework tensorflow --load ${MODEL_DIR}/saved_model --save_t2v ${TARGET_VECTORS_FILE_PATH}
+${PYTHON} -u code2vec/code2vec.py --framework tensorflow --load ${MODEL_DIR}/saved_model_iter --save_t2v ${TARGET_VECTORS_FILE_PATH}
 
 rm -f log.txt keras_model_log.txt
 
 cat ${TEST_DATA}.vectors > ${VECTORS_DIR}/${CODE_VECTORS_FILE}
+
+cd nl2ml
+
+${PYTHON} join_dataset_and_code_vectors.py
